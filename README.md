@@ -38,7 +38,7 @@ Uma extensão fofa, moderna e produtiva para navegadores baseados em Chromium, p
 
 5. **🎨 Temas e Visual Bonitinho**:
    - Design minimalista, acolhedor e focado na produtividade.
-   - Suporte a 3 temas: **Claro (Padrão Acolhedor)**, **Escuro (Dark Mode)** e **Pastel**.
+   - Suporte a 2 temas: **Claro (Padrão)**, **Escuro (Dark Mode)**.
    - Ícone de tomatinho com folhas verdes e bochechas rosadas.
 
 6. **📊 Estatísticas e Ofensiva (Streaks)**:
