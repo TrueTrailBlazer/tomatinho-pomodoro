@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foco no Objetivo - Tomatinho Pomodoro</title>
+  <link rel="stylesheet" href="blocked.css">
+</head>
+<body>
+  <div class="card">
+    <div class="mascot-container">
+      <img src="../icons/tomato.svg" alt="Tomatinho" class="mascot-img">
+    </div>
+
+    <h1 class="title">Ops! Hora de Focar!</h1>
+    <p class="subtitle">
+      Você adicionou este site à sua lista de distrações. Não perca o ritmo, sua meta está próxima!
+    </p>
+
+    <div class="timer-box">
+      <div class="timer-label">Tempo restante no ciclo atual:</div>
+      <div class="countdown" id="countdown">--:--</div>
+      <div class="task-info" id="task-container" style="display: none;">
+        <span>Focando em:</span>
+        <strong id="task-title"></strong>
+      </div>
+    </div>
+
+    <div class="motivational-quote" id="quote">
+      "Pequenos passos constantes constroem grandes conquistas."
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" id="btn-back">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px; margin-right: 6px;">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Voltar ao trabalho
+      </button>
+      <button class="btn btn-secondary" id="btn-quote">Nova frase</button>
+    </div>
+  </div>
+
+  <script src="blocked.js"></script>
+</body>
+</html>

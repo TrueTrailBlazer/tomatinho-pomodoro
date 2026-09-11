@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <filter id="gearShadowClean" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2.5" stdDeviation="2.5" flood-color="#212529" flood-opacity="0.2" />
+    </filter>
+  </defs>
+
+  <!-- Tomato Body sem background -->
+  <g filter="url(#gearShadowClean)">
+    <path d="M64 42 C40 42 24 56 24 80 C24 104 42 118 64 118 C86 118 104 104 104 80 C104 56 88 42 64 42 Z" 
+          fill="#FF6B6B"/>
+    <!-- Bottom Depth -->
+    <path d="M33 91 C42 108 54 118 64 118 C74 118 86 108 95 91 C83 102 45 102 33 91 Z" 
+          fill="#FA5252" opacity="0.65"/>
+  </g>
+
+  <!-- Stem / Folhas -->
+  <g fill="#51CF66" stroke="#2B8A3E" stroke-width="1.8" stroke-linejoin="round">
+    <path d="M64 42 C64 32 68 24 73 23 C74 25 71 34 67 43 Z" fill="#2B8A3E" />
+    <path d="M64 44 C57 34 46 36 43 41 C50 44 56 44 64 46 Z" />
+    <path d="M64 44 C71 34 82 36 85 41 C78 44 72 44 64 46 Z" />
+  </g>
+
+  <!-- Brilho no tomate -->
+  <ellipse cx="44" cy="59" rx="7.5" ry="4" transform="rotate(-28 44 59)" fill="#FFFFFF" opacity="0.65" />
+
+  <!-- Óculos estilizados de nerd/ajustador -->
+  <g stroke="#2B2D42" stroke-width="2.6" fill="none">
+    <!-- Lentes arredondadas com leve reflexo translúcido -->
+    <rect x="37" y="70" width="18" height="17" rx="5.5" fill="#FFFFFF" fill-opacity="0.9"/>
+    <rect x="69" y="70" width="18" height="17" rx="5.5" fill="#FFFFFF" fill-opacity="0.9"/>
+    <!-- Ponte e hastes -->
+    <line x1="55" y1="78" x2="69" y2="78" stroke-linecap="round"/>
+    <line x1="37" y1="77" x2="27" y2="75" stroke-linecap="round"/>
+    <line x1="87" y1="77" x2="97" y2="75" stroke-linecap="round"/>
+  </g>
+
+  <!-- Olhos dentro dos óculos -->
+  <ellipse cx="46" cy="78" rx="3.5" ry="4.2" fill="#212529" />
+  <circle cx="44.8" cy="76" r="1.4" fill="#FFFFFF" />
+  
+  <ellipse cx="78" cy="78" rx="3.5" ry="4.2" fill="#212529" />
+  <circle cx="76.8" cy="76" r="1.4" fill="#FFFFFF" />
+
+  <!-- Bochechas fofas -->
+  <ellipse cx="32" cy="86" rx="4.8" ry="2.6" fill="#FFA8A8" />
+  <ellipse cx="94" cy="86" rx="4.8" ry="2.6" fill="#FFA8A8" />
+
+  <!-- Sorriso confiante -->
+  <path d="M59 87 Q63 92 68 88" stroke="#212529" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+
+  <!-- Badge de Engrenagem (Settings) aperfeiçoado e perfeitamente simétrico -->
+  <g transform="translate(81, 15)" filter="url(#gearShadowClean)">
+    <!-- Fundo circular azul vivo com borda branca nítida -->
+    <circle cx="16" cy="16" r="15" fill="#339AF0" stroke="#FFFFFF" stroke-width="2.5"/>
+    
+    <!-- Engrenagem perfeitamente geométrica com 6 dentes simétricos -->
+    <g transform="translate(16, 16)" fill="#FFFFFF">
+      <!-- 6 Dentes simétricos rotacionados a cada 60 graus -->
+      <rect x="-2.8" y="-9.2" width="5.6" height="18.4" rx="1.3" />
+      <rect x="-2.8" y="-9.2" width="5.6" height="18.4" rx="1.3" transform="rotate(60)" />
+      <rect x="-2.8" y="-9.2" width="5.6" height="18.4" rx="1.3" transform="rotate(120)" />
+      
+      <!-- Corpo central da engrenagem -->
+      <circle cx="0" cy="0" r="6.8" />
+      
+      <!-- Furo central vazado perfeitamente alinhado com o azul de fundo -->
+      <circle cx="0" cy="0" r="3.2" fill="#339AF0" />
+    </g>
+  </g>
+</svg>

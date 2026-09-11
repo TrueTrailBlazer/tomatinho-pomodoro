@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <filter id="softGlowLight" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#FF4B4B" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <!-- Sun Rays (em torno do tomate, sem background) -->
+  <g stroke="#FFA000" stroke-width="3" stroke-linecap="round" opacity="0.9">
+    <line x1="64" y1="12" x2="64" y2="20" />
+    <line x1="94" y1="24" x2="88" y2="30" />
+    <line x1="108" y1="56" x2="100" y2="58" />
+    <line x1="20" y1="56" x2="28" y2="58" />
+    <line x1="34" y1="24" x2="40" y2="30" />
+  </g>
+
+  <!-- Tomato Body & Shading -->
+  <g filter="url(#softGlowLight)">
+    <!-- Base Body -->
+    <path d="M64 42 C40 42 24 56 24 80 C24 104 42 118 64 118 C86 118 104 104 104 80 C104 56 88 42 64 42 Z" 
+          fill="#FF5252"/>
+    <!-- Bottom Depth Gradient/Shade -->
+    <path d="M33 91 C42 108 54 118 64 118 C74 118 86 108 95 91 C83 102 45 102 33 91 Z" 
+          fill="#E03131" opacity="0.65"/>
+  </g>
+
+  <!-- Stem / Folhas do Tomate -->
+  <g fill="#40C057" stroke="#2F9E44" stroke-width="1.8" stroke-linejoin="round">
+    <!-- Haste central -->
+    <path d="M64 42 C64 32 68 24 73 23 C74 25 71 34 67 43 Z" fill="#2F9E44" />
+    <!-- Folhas do cálice -->
+    <path d="M64 44 C57 34 46 36 43 41 C50 44 56 44 64 46 Z" />
+    <path d="M64 44 C71 34 82 36 85 41 C78 44 72 44 64 46 Z" />
+    <path d="M64 45 C60 51 51 55 48 53 C52 49 57 47 64 46 Z" />
+    <path d="M64 45 C68 51 77 55 80 53 C76 49 71 47 64 46 Z" />
+  </g>
+
+  <!-- Brilho / Specular highlight -->
+  <ellipse cx="44" cy="59" rx="8" ry="4.5" transform="rotate(-28 44 59)" fill="#FFFFFF" opacity="0.7" />
+  <circle cx="36" cy="69" r="2.5" fill="#FFFFFF" opacity="0.55" />
+
+  <!-- Olhos fofos com brilho -->
+  <ellipse cx="47" cy="76" rx="4.8" ry="6" fill="#22252A" />
+  <circle cx="45.5" cy="73.5" r="2" fill="#FFFFFF" />
+  <circle cx="49" cy="78.5" r="0.9" fill="#FFFFFF" />
+
+  <ellipse cx="81" cy="76" rx="4.8" ry="6" fill="#22252A" />
+  <circle cx="79.5" cy="73.5" r="2" fill="#FFFFFF" />
+  <circle cx="83" cy="78.5" r="0.9" fill="#FFFFFF" />
+
+  <!-- Bochechinhas coradas -->
+  <ellipse cx="38" cy="84" rx="5.5" ry="3.2" fill="#FF8787" opacity="0.85" />
+  <ellipse cx="90" cy="84" rx="5.5" ry="3.2" fill="#FF8787" opacity="0.85" />
+
+  <!-- Boquinha sorridente alegre -->
+  <path d="M58 81 Q64 89 70 81" stroke="#22252A" stroke-width="2.6" stroke-linecap="round" fill="none" />
+</svg>

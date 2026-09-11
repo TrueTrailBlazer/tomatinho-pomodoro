@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tomatinho Pomodoro</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <!-- O próprio tomatinho é o botão de alternância do tema Dia/Noite! -->
+      <div class="logo-group">
+        <button class="logo-btn" id="btn-tomato-theme" title="Clique no Tomatinho para alternar Dia / Noite">
+          <img src="../icons/tomato-day.svg" alt="Tomatinho" class="logo-icon wiggling" id="logo-mascot">
+        </button>
+        <span class="logo-text">Tomatinho</span>
+      </div>
+
+      <div class="header-actions">
+        <!-- Único botão no topo: Ajustes -->
+        <button class="icon-btn" id="btn-open-settings" title="Ajustes e Opções">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Barra de Navegação Principal: 3 Abas Espaçosas -->
+    <nav class="nav-tabs" id="main-nav-tabs">
+      <button class="nav-tab active" data-tab="timer" title="Temporizador">
+        <span class="tab-icon">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="13" r="8"></circle>
+            <path d="M12 9v4l2 2"></path>
+            <path d="M10 2h4"></path>
+            <path d="m17 5 1.5-1.5"></path>
+          </svg>
+        </span>
+        <span class="tab-label">Timer</span>
+      </button>
+
+      <button class="nav-tab" data-tab="tasks" title="Lista de Tarefas">
+        <span class="tab-icon">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 11l3 3L22 4"></path>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+          </svg>
+        </span>
+        <span class="tab-label">Tarefas</span>
+      </button>
+
+      <button class="nav-tab" data-tab="stats" title="Estatísticas">
+        <span class="tab-icon">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 20V10"></path>
+            <path d="M12 20V4"></path>
+            <path d="M6 20v-6"></path>
+          </svg>
+        </span>
+        <span class="tab-label">Estatísticas</span>
+      </button>
+    </nav>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="tab-content-container">
+
+      <!-- ABA 1: TIMER -->
+      <section class="tab-pane active" id="pane-timer">
+        <!-- Seletor de Modo -->
+        <div class="mode-selector">
+          <button class="mode-pill active" data-mode="focus">Foco</button>
+          <button class="mode-pill" data-mode="shortBreak">Pausa Curta</button>
+          <button class="mode-pill" data-mode="longBreak">Pausa Longa</button>
+        </div>
+
+        <!-- Stepper Rápido de Tempo com Suporte a Horas -->
+        <div class="quick-stepper-bar">
+          <button class="btn-stepper" id="btn-stepper-minus" title="Diminuir tempo (-5m)">-5m</button>
+          <div class="stepper-label" id="stepper-label" title="Clique para editar a duração">25 min</div>
+          <button class="btn-stepper" id="btn-stepper-plus" title="Aumentar tempo (+5m)">+5m</button>
+        </div>
+
+        <!-- Indicador de Tarefa Ativa -->
+        <div class="active-task-pill" id="active-task-pill" style="display: none;">
+          <span class="pill-dot"></span>
+          <span class="pill-text" id="active-task-name">Trabalhando em...</span>
+          <button class="pill-clear" id="btn-clear-active-task" title="Desvincular tarefa">×</button>
+        </div>
+
+        <!-- Círculo do Temporizador (Clique no número para editar!) -->
+        <div class="timer-display-wrapper">
+          <svg class="progress-ring" viewBox="0 0 220 220">
+            <circle class="progress-ring-bg" cx="110" cy="110" r="95"></circle>
+            <circle class="progress-ring-fill" id="timer-progress" cx="110" cy="110" r="95"></circle>
+          </svg>
+          <div class="timer-inner">
+            <div class="timer-digits" id="timer-digits" title="Clique para digitar ou alterar a duração">25:00</div>
+            <div class="timer-status" id="timer-status">Pronto para começar</div>
+          </div>
+        </div>
+
+        <!-- Ciclos de Pomodoro -->
+        <div class="cycles-container">
+          <div class="cycles-dots" id="cycles-dots"></div>
+          <span class="cycles-text" id="cycles-text">Ciclo 1 de 4</span>
+        </div>
+
+        <!-- Botões de Ação do Timer -->
+        <div class="timer-controls">
+          <button class="btn-control btn-secondary" id="btn-reset" title="Reiniciar ciclo atual">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+              <path d="M3 3v5h5"></path>
+            </svg>
+          </button>
+
+          <button class="btn-control btn-main" id="btn-start-pause">
+            <span id="start-pause-icon">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </span>
+            <span id="start-pause-label">Iniciar</span>
+          </button>
+
+          <button class="btn-control btn-secondary" id="btn-skip" title="Pular para a próxima etapa">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 4 15 12 5 20 5 4"></polygon>
+              <line x1="19" y1="5" x2="19" y2="19"></line>
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- ABA 2: TAREFAS -->
+      <section class="tab-pane" id="pane-tasks">
+        <div class="task-form">
+          <input type="text" id="input-task-text" placeholder="Qual será sua meta de foco?" maxlength="60">
+          <div class="task-form-footer">
+            <div class="estimate-wrapper" title="Estimativa de pomodoros">
+              <img src="../icons/tomato-day.svg" width="16" height="16" alt="Tomate" class="inline-tomato">
+              <select id="select-task-estimate">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+            </div>
+            <button class="btn btn-sm btn-primary" id="btn-add-task">+ Adicionar</button>
+          </div>
+        </div>
+
+        <div class="tasks-list" id="tasks-list"></div>
+      </section>
+
+      <!-- ABA 3: STATS -->
+      <section class="tab-pane" id="pane-stats">
+        <div class="streak-card">
+          <div class="streak-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="streak-value" id="stats-streak-count">0 dias</div>
+            <div class="streak-desc">Ofensiva de foco contínuo</div>
+          </div>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-title">Ciclos Hoje</div>
+            <div class="metric-num" id="stats-today-cycles">0</div>
+            <div class="metric-sub">Pomodoros</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-title">Tempo Focado</div>
+            <div class="metric-num" id="stats-today-time">0m</div>
+            <div class="metric-sub">Total hoje</div>
+          </div>
+        </div>
+
+        <!-- Botão Rápido para Resetar Dados de Teste -->
+        <div style="text-align: right; margin-bottom: 12px;">
+          <button class="btn-text-action" id="btn-quick-reset-today" title="Zerar contagens registradas hoje durante testes">
+            🔄 Zerar ciclos de hoje
+          </button>
+        </div>
+
+        <div class="chart-section">
+          <div class="chart-header">Últimos 7 dias</div>
+          <div class="bars-container" id="stats-bars"></div>
+        </div>
+      </section>
+
+      <!-- PAINEL UNIFICADO DE AJUSTES & OPÇÕES -->
+      <section class="tab-pane" id="pane-settings">
+
+
+        <!-- Sub-navegação interna de Ajustes (Estilo Abas Segmentadas) -->
+        <div class="sub-nav-tabs">
+          <button class="sub-tab active" data-sub="times">Tempos</button>
+          <button class="sub-tab" data-sub="blocker">Filtro</button>
+          <button class="sub-tab" data-sub="audio">Sons</button>
+          <button class="sub-tab" data-sub="reset">Reset</button>
+        </div>
+
+        <!-- Sub-painel 1: Tempos & Automação -->
+        <div class="sub-pane active" id="sub-pane-times">
+          <div class="settings-card">
+            <div class="section-title">Duração dos Ciclos (minutos)</div>
+            <div class="settings-durations">
+              <div class="duration-item">
+                <label for="set-focus">Foco</label>
+                <input type="number" id="set-focus" min="1" max="180" value="25">
+              </div>
+              <div class="duration-item">
+                <label for="set-short">Pausa</label>
+                <input type="number" id="set-short" min="1" max="45" value="5">
+              </div>
+              <div class="duration-item">
+                <label for="set-long">Longa</label>
+                <input type="number" id="set-long" min="1" max="90" value="15">
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 14px;">
+              <div class="slider-header">
+                <label for="set-interval">Pausa longa a cada quantos ciclos?</label>
+                <span id="val-interval">4 ciclos</span>
+              </div>
+              <input type="range" id="set-interval" min="2" max="8" step="1" value="4">
+            </div>
+          </div>
+
+          <div class="settings-card" style="margin-top: 10px;">
+            <div class="section-title">Automatização</div>
+            <div class="switch-row">
+              <div>
+                <div class="switch-title">Iniciar pausas automaticamente</div>
+                <div class="switch-desc">Sem precisar apertar play após o foco</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="check-auto-breaks">
+                <span class="slider"></span>
+              </label>
+            </div>
+
+            <div class="switch-row">
+              <div>
+                <div class="switch-title">Iniciar foco automaticamente</div>
+                <div class="switch-desc">Inicia o próximo ciclo após a pausa</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="check-auto-focus">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="settings-card" style="margin-top: 10px;">
+            <div class="section-title">Aparência</div>
+            <div class="switch-row">
+              <div>
+                <div class="switch-title">Menu na parte inferior</div>
+                <div class="switch-desc">Move os botões principais para baixo</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="toggle-nav-bottom">
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sub-painel 2: Filtro de Sites -->
+        <div class="sub-pane" id="sub-pane-blocker">
+          <div class="settings-card">
+            <div class="switch-row">
+              <div>
+                <div class="switch-title">Bloquear durante o foco</div>
+                <div class="switch-desc">Sites liberados automaticamente nas pausas</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="check-blocker-enabled" checked>
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="settings-card" style="margin-top: 10px;">
+            <div class="blocker-presets">
+              <span class="preset-label">Atalhos rápidos:</span>
+              <div class="preset-chips">
+                <button class="chip" data-site="youtube.com">+ YouTube</button>
+                <button class="chip" data-site="instagram.com">+ Instagram</button>
+                <button class="chip" data-site="x.com">+ X / Twitter</button>
+                <button class="chip" data-site="reddit.com">+ Reddit</button>
+                <button class="chip" data-site="tiktok.com">+ TikTok</button>
+              </div>
+            </div>
+
+            <div class="custom-block-form">
+              <input type="text" id="input-custom-site" placeholder="ex: facebook.com, globo.com">
+              <button class="btn btn-sm btn-primary" id="btn-add-site">Bloquear</button>
+            </div>
+
+            <div class="blocked-sites-list" id="blocked-sites-list"></div>
+          </div>
+        </div>
+
+        <!-- Sub-painel 3: Sons & Ruído -->
+        <div class="sub-pane" id="sub-pane-audio">
+          <div class="settings-card">
+            <div class="section-title">Alarme ao Concluir</div>
+            <div class="form-group">
+              <label for="select-alarm-sound">Tom do Alarme</label>
+              <div class="audio-select-row">
+                <select id="select-alarm-sound">
+                  <option value="zen_bell">Sino Tibetano Zen</option>
+                  <option value="gentle_beep">Bipe Harmonioso</option>
+                  <option value="marimba">Marimba Acústica</option>
+                </select>
+                <button class="btn btn-sm btn-modal-cancel btn-test-sound" id="btn-test-alarm" title="Ouvir amostra">
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  <span>Testar</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="slider-header">
+                <label for="range-alarm-vol">Volume do Alarme</label>
+                <span id="val-alarm-vol">70%</span>
+              </div>
+              <input type="range" id="range-alarm-vol" min="0" max="1" step="0.05" value="0.7">
+            </div>
+          </div>
+
+          <div class="settings-card" style="margin-top: 10px;">
+            <div class="section-title">Som de Fundo (Durante o Foco)</div>
+            <div class="ambient-grid">
+              <label class="ambient-card">
+                <input type="radio" name="ambientSound" value="off" checked>
+                <div class="ambient-card-content">
+                  <span class="ambient-svg">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                      <line x1="23" y1="9" x2="17" y2="15"></line>
+                      <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
+                  </span>
+                  <span class="ambient-name">Silêncio</span>
+                </div>
+              </label>
+              <label class="ambient-card">
+                <input type="radio" name="ambientSound" value="rain">
+                <div class="ambient-card-content">
+                  <span class="ambient-svg">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
+                      <path d="M16 14v6"></path>
+                      <path d="M8 14v6"></path>
+                      <path d="M12 16v6"></path>
+                    </svg>
+                  </span>
+                  <span class="ambient-name">Chuva</span>
+                </div>
+              </label>
+              <label class="ambient-card">
+                <input type="radio" name="ambientSound" value="white_noise">
+                <div class="ambient-card-content">
+                  <span class="ambient-svg">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                      <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                      <line x1="6" y1="1" x2="6" y2="4"></line>
+                      <line x1="10" y1="1" x2="10" y2="4"></line>
+                      <line x1="14" y1="1" x2="14" y2="4"></line>
+                    </svg>
+                  </span>
+                  <span class="ambient-name">Foco Cozy</span>
+                </div>
+              </label>
+              <label class="ambient-card">
+                <input type="radio" name="ambientSound" value="waves">
+                <div class="ambient-card-content">
+                  <span class="ambient-svg">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
+                      <path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
+                      <path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>
+                    </svg>
+                  </span>
+                  <span class="ambient-name">Ondas</span>
+                </div>
+              </label>
+            </div>
+
+            <div class="form-group" style="margin-top: 14px;">
+              <div class="slider-header">
+                <label for="range-ambient-vol">Volume Ambiente</label>
+                <span id="val-ambient-vol">50%</span>
+              </div>
+              <input type="range" id="range-ambient-vol" min="0" max="1" step="0.05" value="0.5">
+            </div>
+          </div>
+        </div>
+
+        <!-- Sub-painel 4: Reset & Dados de Teste -->
+        <div class="sub-pane" id="sub-pane-reset">
+          <div class="settings-card">
+            <div class="section-title">Histórico de Testes</div>
+            <p class="reset-desc">Usou a extensão para testes rápidos e quer zerar os ciclos e minutos registrados hoje?</p>
+            <button class="btn btn-modal-cancel w-100" id="btn-reset-today-stats">
+              🔄 Zerar Pomodoros de Hoje
+            </button>
+          </div>
+
+          <div class="settings-card" style="margin-top: 10px;">
+            <div class="section-title">Reiniciar Ciclo Atual</div>
+            <p class="reset-desc">Voltar o contador de ciclos para o Ciclo 1 de 4 imediatamente.</p>
+            <button class="btn btn-modal-cancel w-100" id="btn-reset-cycle-count">
+              🍅 Resetar para Ciclo 1
+            </button>
+          </div>
+
+          <div class="settings-card" style="margin-top: 10px;">
+            <div class="section-title" style="color: #FA5252;">Reset de Fábrica</div>
+            <p class="reset-desc">Limpa todas as estatísticas, ofensivas (streaks), histórico semanal e restaura padrões.</p>
+            <button class="btn btn-danger-outline w-100" id="btn-reset-factory">
+              ⚠️ Restaurar Tudo ao Padrão
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Modal Customizado de Confirmação (Reset) -->
+    <div class="custom-confirm-modal" id="confirm-modal" style="display: none;">
+      <div class="confirm-card">
+        <h3 id="confirm-title">Tem certeza?</h3>
+        <p id="confirm-message">Esta ação não pode ser desfeita.</p>
+        <div class="confirm-actions">
+          <button class="btn btn-modal-cancel" id="btn-confirm-cancel">Cancelar</button>
+          <button class="btn btn-danger" id="btn-confirm-ok">Confirmar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Edição Direta de Tempo (Digitando ou com Horas) -->
+    <div class="time-edit-modal" id="time-edit-modal" style="display: none;">
+      <div class="time-edit-card">
+        <div class="time-edit-header">
+          <span id="time-edit-title">Editar Duração</span>
+          <button class="btn-close-modal" id="btn-close-time-edit">×</button>
+        </div>
+        <div class="time-edit-body">
+          <div class="time-input-group">
+            <div class="time-input-col">
+              <input type="number" id="input-edit-hours" min="0" max="12" value="0">
+              <label>Horas</label>
+            </div>
+            <span class="time-sep">:</span>
+            <div class="time-input-col">
+              <input type="number" id="input-edit-minutes" min="1" max="59" value="25">
+              <label>Minutos</label>
+            </div>
+          </div>
+
+          <div class="quick-preset-label">Atalhos rápidos:</div>
+          <div class="quick-preset-row">
+            <button class="preset-time-chip" data-mins="15">15m</button>
+            <button class="preset-time-chip" data-mins="25">25m</button>
+            <button class="preset-time-chip" data-mins="45">45m</button>
+            <button class="preset-time-chip" data-mins="60">1h</button>
+            <button class="preset-time-chip" data-mins="90">1h30</button>
+            <button class="preset-time-chip" data-mins="120">2h</button>
+          </div>
+
+          <button class="btn btn-primary w-100" id="btn-confirm-time-edit">Confirmar Duração</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
