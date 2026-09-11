@@ -1,6 +1,6 @@
-# 🍅 Tomatinho Pomodoro - Extensão para Vivaldi
+# 🍅 Tomatinho Pomodoro - Extensão para Navegadores
 
-Uma extensão fofa, moderna e produtiva para o navegador **Vivaldi** (e navegadores baseados em Chromium), projetada para auxiliar no foco profundo, organização de tarefas e eliminação de distrações sem sobrecarregar sua mente.
+Uma extensão fofa, moderna e produtiva para navegadores baseados em Chromium, projetada para auxiliar no foco profundo, organização de tarefas e eliminação de distrações sem sobrecarregar sua mente.
 
 ---
 
@@ -9,7 +9,7 @@ Uma extensão fofa, moderna e produtiva para o navegador **Vivaldi** (e navegado
 1. **⏱️ Temporizador & Core**:
    - Ciclos clássicos: **Foco (25 min)**, **Pausa Curta (5 min)** e **Pausa Longa (15 min a cada 4 ciclos)**.
    - Anel de progresso circular fluido com cores dinâmicas (vermelho no foco, verde no descanso).
-   - **Badge inteligente no ícone do navegador**: exibe os minutos restantes diretamente na barra de ferramentas do Vivaldi.
+   - **Badge inteligente no ícone do navegador**: exibe os minutos restantes diretamente na barra de ferramentas do navegador.
    - **Notificações nativas no Windows**: avisos do sistema quando o tempo acabar.
    - **Persistência total**: opera em segundo plano via `chrome.alarms` e `storage`, sem travar ou perder tempo mesmo ao fechar o popup.
 
@@ -48,24 +48,24 @@ Uma extensão fofa, moderna e produtiva para o navegador **Vivaldi** (e navegado
 
 ---
 
-## 🚀 Como Instalar no Vivaldi (Passo a Passo)
+## 🚀 Como Instalar no navegador (Passo a Passo)
 
 A extensão é 100% nativa em HTML, CSS e JavaScript (Manifest V3) e **não requer instalação do Node.js nem build**:
 
-1. Abra o seu navegador **Vivaldi**.
+1. Abra o seu navegador **navegador**.
 2. Na barra de endereços, digite:
    ```text
-   vivaldi://extensions
+   navegador://extensions
    ```
-   *(ou acesse pelo menu do Vivaldi no canto superior esquerdo: **Ferramentas** > **Extensões**)*.
+   *(ou acesse pelo menu do navegador no canto superior esquerdo: **Ferramentas** > **Extensões**)*.
 3. No canto superior direito da página de extensões, ative a chave **"Modo do desenvolvedor"** (*Developer mode*).
 4. Clique no botão **"Carregar sem compactação"** (*Load unpacked*) que aparecerá no canto superior esquerdo.
 5. Navegue até a pasta da extensão e selecione-a:
    ```text
    C:\Users\LuísFernandodaConcei\.gemini\antigravity\scratch\pomodoro-extension
    ```
-6. Pronto! O ícone do **Tomatinho 🍅** aparecerá na barra de ferramentas do seu Vivaldi.
-   - *Dica:* Clique no ícone de quebra-cabeça na barra do Vivaldi e fixe o Tomatinho para tê-lo sempre à vista!
+6. Pronto! O ícone do **Tomatinho 🍅** aparecerá na barra de ferramentas do seu navegador.
+   - *Dica:* Clique no ícone de quebra-cabeça na barra do navegador e fixe o Tomatinho para tê-lo sempre à vista!
 
 ---
 
